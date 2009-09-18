@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def self.consumer
-    OAuth::Consumer.new("cHU2AwB44eLzeZuwLkTA", "RBvNufBf3T22iPmPP406UecSgkoRZycguGoHELfU4", {:site => 'http://localhost:3000'})
+    OAuth::Consumer.new("PGpv3jXSDphjXzP8AROzjA", "ldrrmQ3pEy6JUvNjKq9iDA3hhAns4RNEuU55EUBU", {:site => 'https://api.livework.com'})
   end
 
   def create
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     @access_token = OAuth::AccessToken.new(UsersController.consumer, @user.token, @user.secret)
     @response = UsersController.consumer.request(:post, '/api/v1/projects.xml', @access_token, {:scheme => :query_string},
                                                  {'project[title]' => 'Valid Project',
-                                                  'project[category_id]' => 1,
+                                                  'project[category_id]' => 10,
                                                   'project[description]' => 'The most valid project you have ever seen!',
                                                   'project[requirements]' => 'Lots of validity.',
                                                   'project[start_date]' => Time.now,
@@ -49,5 +49,5 @@ class UsersController < ApplicationController
                                                   'expert_payment_plan[amount]' => 10,
                                                   'expert_payment_plan[payment_type]' => 'fixed'})
     render :xml => @response.body
-  end  
+  end
 end

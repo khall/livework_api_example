@@ -1,1 +1,15 @@
-This is an implementation of the API for http://livework.com. It uses ruby_oauth and creates a project using the API. Pretty simple example at this point. This implementation also currently points to localhost:3000, because the API server isn't up yet. So...yeah.
+This is an implementation of the API for http://api.livework.com. It uses ruby_oauth and creates a project using the API.
+Pretty simple example at this point.
+
+Just download this via git, run the migration, start your server locally on port 3000, access http://localhost:3000/users/create
+and the api will connect to the server and ask if you want to authorize the user bound to the oauth_token to access your
+account (you may have to create an account on the machine first via the "Register" link in the upper right of the www.livework.com screen.)
+This is a basic test to see if the server is correctly responding to the very basic levels of oauth. If this page doesn't
+come up, then most likely other things will fail.
+
+Authorize the user and the server will kick you back to http://localhost:3000/users/callback and will store a user in your
+session. Now you can try creating a project.
+
+To create a project using the API, access http://localhost:3000/users/create_project, this will attempt to use your oauth
+request token to connect to the server and create a project. If this is successful you will be given an XML response which
+will have the id of the created project.
