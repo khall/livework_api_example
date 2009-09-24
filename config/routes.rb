@@ -2,6 +2,16 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/create', :controller => 'users', :action => 'create'
   map.connect '/callback', :controller => 'users', :action => 'callback'
   map.connect '/create_project', :controller => 'users', :action => 'create_project'
+  map.connect '/update_project/:id', :controller => 'users', :action => 'update_project'
+  map.connect '/show_project/:id', :controller => 'users', :action => 'show_project'
+  map.connect '/create_task', :controller => 'users', :action => 'create_task'
+  map.connect '/update_task/:id', :controller => 'users', :action => 'update_task'
+  map.connect '/show_task/:id', :controller => 'users', :action => 'show_task'
+  map.connect '/accept_task/:id', :controller => 'users', :action => 'accept_task'
+  map.connect '/start_task/:id', :controller => 'users', :action => 'start_task'
+  map.connect '/complete_task/:id', :controller => 'users', :action => 'complete_task'
+  map.connect '/revise_work_time_task/:id', :controller => 'users', :action => 'revise_work_time_task'
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
