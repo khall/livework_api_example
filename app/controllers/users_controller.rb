@@ -63,7 +63,7 @@ class UsersController < ApplicationController
 
   # Updates a project that you have the ability to modify.
   # http://developer.livework.com/LiveWork-API-Method%3A-projects-update
-  def update_project # this is untested due to bad code in the API branch
+  def update_project
     @user = User.find_by_username(session['user'])
     @access_token = OAuth::AccessToken.new(UsersController.consumer, @user.token, @user.secret)
     @response = UsersController.consumer.request(:put, "/api/v1/projects/#{params[:id]}.xml", @access_token, {:scheme => :query_string},
@@ -106,10 +106,10 @@ class UsersController < ApplicationController
 
   # Updates a task with given task parameters
   # http://developer.livework.com/LiveWork-API-Method%3A-tasks-update
-  def update_task # failed -- untested
+  def update_task
     @user = User.find_by_username(session['user'])
     @access_token = OAuth::AccessToken.new(UsersController.consumer, @user.token, @user.secret)
-    @response = UsersController.consumer.request(:post, "/api/v1/tasks/#{params[:id]}.xml", @access_token, {:scheme => :query_string},
+    @response = UsersController.consumer.request(:put, "/api/v1/tasks/#{params[:id]}.xml", @access_token, {:scheme => :query_string},
                                                  {'task[title]' => 'Updated Valid Task'})
     render :xml => @response.body
   end

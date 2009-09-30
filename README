@@ -1,15 +1,38 @@
 This is an implementation of the API for http://api.livework.com. It uses ruby_oauth and creates a project using the API.
-Pretty simple example at this point.
+Pretty simple example at this point. Please see http://developer.livework.com/ for the documentation on using the API,
+this app provides a sample usage of every method available. Every sample usage is in users_controller.rb, although
+normally this wouldn't be the case.
 
-Just download this via git, run the migration, start your server locally on port 3000, access http://localhost:3000/users/create
+Just download this via git, run the migration, start your server locally on port 3000, access http://localhost:3000/create
 and the api will connect to the server and ask if you want to authorize the user bound to the oauth_token to access your
 account (you may have to create an account on the machine first via the "Register" link in the upper right of the www.livework.com screen.)
 This is a basic test to see if the server is correctly responding to the very basic levels of oauth. If this page doesn't
 come up, then most likely other things will fail.
 
-Authorize the user and the server will kick you back to http://localhost:3000/users/callback and will store a user in your
+Authorize the user and the server will kick you back to http://localhost:3000/callback and will store a user in your
 session. Now you can try creating a project.
 
-To create a project using the API, access http://localhost:3000/users/create_project, this will attempt to use your oauth
+To create a project using the API, access http://localhost:3000/create_project, this will attempt to use your oauth
 request token to connect to the server and create a project. If this is successful you will be given an XML response which
 will have the id of the created project.
+
+You can update the created project by calling http://localhost:3000/update_project/<ID> where <ID> is the project id
+that was returned in XML after you called the create_project.
+
+Showing the project can be done by calling http://localhost:3000/show_project/<ID>
+
+Creating a task can be done by calling http://localhost:3000/create_task
+
+Updating a task can be done by calling http://localhost:3000/update_task/<ID>
+
+Showing a task can be done by calling http://localhost:3000/show_task/<ID>
+
+As a user who needs to work on a task, you can accept the task to work on by calling http://localhost:3000/accept_task/<ID>
+
+If you've accepted a task and you want to begin work on it, you can call http://localhost:3000/start_task/<ID>
+to mark the task as being currently worked on.
+
+If you're done working on a task, you can mark it as completed by calling http://localhost:3000/complete_task/<ID>
+
+If you're working on a task which is being paid by the hour, and you wish to revise the time you worked on the task
+you can do so by calling http://localhost:3000/revise_work_time_task/<ID>
