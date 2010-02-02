@@ -89,7 +89,7 @@ class UsersController < ApplicationController
     render :xml => @response.body
   end
 
-  # Creates a task with given task parameters
+  # Creates a task with given task parameters -- you probably want to change project_id to be a project you created
   # http://developer.livework.com/LiveWork-API-Method%3A-tasks-create
   def create_task
     @user = User.find_by_username(session['user'])
@@ -97,7 +97,7 @@ class UsersController < ApplicationController
     @response = UsersController.consumer.request(:post, "/api/v1/tasks.xml", @access_token, {:scheme => :query_string},
                                                  {'task[title]' => 'Valid Task',
                                                   'task[description]' => 'The most valid task you have ever seen!',
-                                                  'task[project_id]' => 222,
+                                                  'task[project_id]' => 222, # try putting your project_id here (if you've created a project)
                                                   'task[priority]' => 2,
                                                   'task[managed_by]' => 2,
                                                   'task[due_date]' => Time.now})
