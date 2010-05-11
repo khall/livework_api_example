@@ -56,8 +56,7 @@ class UsersController < ApplicationController
                                                   'project[requirements]' => 'Lots of validity.',
                                                   'project[start_date]' => Time.now,
                                                   'project[max_experts]' => 5,
-                                                  'expert_payment_plan[amount]' => 10,
-                                                  'expert_payment_plan[payment_type]' => 'fixed'})
+                                                  'project[expert_fixed]' => 10})
     render :xml => @response.body
   end
 
